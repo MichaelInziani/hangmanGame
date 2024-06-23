@@ -3,23 +3,32 @@
 import random
 word_list = ["aardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
 
 #Testing code
 print(f'The chosen word is {chosen_word}.')
 
-#Create an empty List called display.
+#Create blanks
 display = []
-word_length = len(chosen_word)
 for _ in range(word_length):
     display.append("_")
-    #display += chosen_word
+    #display += "_"
 
-guess = input("Guess a letter: ").lower()
+end_of_game = False
 
-#Loop through each position in the chosen_word;
-for position in range(word_length):
-    letter = chosen_word[position]
-    if letter == guess:
-        display[position] = letter
-#Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
-print(display)
+while not end_of_game:
+    guess = input("Guess a letter: ").lower()
+
+    #Check the guessed letter
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter
+
+    print(display)
+
+    if "_" not in display:
+        end_of_game = True
+        print("You win")
+
+
